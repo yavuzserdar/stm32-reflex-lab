@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Reflex: Build",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/Tools/build.ps1"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Reflex: Flash",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/Tools/flash.ps1"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Reflex: Monitor",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/Tools/monitor.ps1", "-Port", "${input:serialPort}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Reflex: List Ports",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/Tools/monitor.ps1", "-List"],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    { "id": "serialPort", "type": "promptString", "description": "ST-LINK COM port (e.g. COM5); leave blank to auto-select a single port", "default": "" }
+  ]
+}

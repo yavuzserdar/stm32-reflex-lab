@@ -1,0 +1,2 @@
+# Optional CSV chart only; firmware and PowerShell monitor need no Python.
+matplotlib>=3.7,<4

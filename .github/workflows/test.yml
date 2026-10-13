@@ -1,0 +1,11 @@
+name: Game logic tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and test portable state machine
+        run: |
+          gcc -std=c11 -Wall -Wextra -Werror -ICore/Inc Core/Src/reflex.c tests/test_reflex.c -o /tmp/test-reflex
+          /tmp/test-reflex
